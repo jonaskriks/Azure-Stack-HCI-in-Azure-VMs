@@ -29,7 +29,7 @@ $dataDrives = 1..4 | ForEach-Object { New-VHD -Path "D:\HyperV\VM\$nodeName\Virt
 $dataDrives | ForEach-Object {
     Add-VMHardDiskDrive -Path $_.path -VMName $nodeName
 }
-# Disable checkpoints
+# Disable checkpoints and configure Start Stop actions
 Set-VM -VMName $nodeName -CheckpointType Disabled  -AutomaticStartAction Start -AutomaticStartDelay 180 -AutomaticStopAction ShutDown
 # Enable nested virtualization
 Set-VMProcessor -VMName $nodeName -ExposeVirtualizationExtensions $true -Verbose
